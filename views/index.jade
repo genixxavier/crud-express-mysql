@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  div.columns
+    div.container
+      div.notification
+        h1.title Lista de usuarios
+        div.level
+            div.level-left
+            div.level-right
+              div.level-item
+                a(href="/create", title="title").button.is-dark Nuevo
+        table.table.is-fullwidth
+          tr
+            th nombre
+            th apellidos
+            th sexo
+            th celular
+            th sueldo
+            th Actualizar
+            th Eliminar
+          for user in listusuarios
+            tr
+              td=user.nombre
+              td=user.apellidos
+              td=user.sexo
+              td=user.celular
+              td=user.sueldo
+              td
+                a(href="/user/"+user.id, title="title").class Edit
+              td
+                //- a(href="/user/"+user.id, title="title").class Edit
+                a(href="javascript:void(0)", title="title")(data-id=user.id).delete Delete

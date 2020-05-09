@@ -1,0 +1,69 @@
+extends layout
+
+block content
+  div.columns
+    div.container
+      div.notification
+        div.field.is-grouped
+            div.control
+                a(href="/", title="title").button.is-dark Volver
+        if create
+            h1.title Crear Usuario
+        else
+            h1.title Editar Usuario
+        div
+            div.field
+                label(for="").label Nombre
+                div.control 
+                    input(type="text",id="nombre",value=usuario.nombre).input
+            div.field
+                label(for="").label Apellidos
+                div.control 
+                    input(type="text",id="apellidos",value=usuario.apellidos).input
+            div.columns
+                div.column
+                    div.field
+                        label(for="").label Sexo
+                        div.control 
+                            div.select
+                                select(id="sexo",name="sexo")
+                                    option(value="M" , selected= usuario.sexo == 'M') Masculino
+                                    option(value="F", selected= usuario.sexo == 'F') Femenino
+                div.column
+                    div.field
+                        label(for="").label Celular
+                        div.control 
+                            input(name="celular", id="celular",type="text",value=usuario.celular).input
+
+            div.columns
+                div.column
+                    div.field
+                        label(for="").label Sueldo
+                        div.control 
+                            input(type="text",id="sueldo",name="sueldo")(value=usuario.sueldo).input
+                div.column
+                    div.field
+                        label(for="").label AFP
+                        div.control
+                            div.select
+                                select(id="afp", name="afp")
+                                    option(value="0" , selected= usuario.afp == 0) NO
+                                    option(value="1", selected= usuario.afp == 1) SI
+
+                div.column
+                    div.field
+                        label(for="").label ONP
+                        div.control 
+                            div.select
+                                select(id="onp", name="onp")
+                                    option(value="0" , selected= usuario.onp == 0) NO
+                                    option(value="1", selected= usuario.onp == 1) SI
+            div.field.is-grouped
+                div.control
+                    if create
+                        button#create.button.is-primary Crear Usuario
+                    else
+                        input(type="hidden",id="iduser",value=usuario.id).input
+                        button#update.button.is-link Actualizar
+            div
+                div#alerta.notification
